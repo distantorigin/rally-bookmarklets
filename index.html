@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>Rally Bookmarklets</title>
+</head>
+<body>
+<main>
+<h1>Rally Bookmarklets</h1>
+<p>The following are bookmarklets that may add various functions or conveniences to the Rally interface. These are not optimized for performance, and may break at any time as Broadcom changes the Rally UI. Drag them to your bookmarks bar, or right-click and copy link address to clipboard. You can then paste the copied text into a new bookmark from your browsers bookmark manager.</p>
+<dl>
+<dt><a href="javascript:(function()%7Bvar%20count%20%3D%200%3Bvar%20target%20%3D%20document.querySelector('.smb-DataTable-wrapper')%3Bfunction%20expand()%20%7Bif%20(!target)%20%7Balert('No%20data%20tables%20containing%20Rally%20objects%20were%20found.%20Please%20ensure%20you%20are%20on%20a%20Rally%20page%20with%20a%20tree%20of%20user%20stories%20prior%20to%20running%20this%20bookmarklet.')%3Breturn%3B%7Dlet%20expander%20%3D%20target.querySelector('tr%3Anot(.is-expanded).smb-TableRow%20%3E%20*%20%3E%20*%20.smb-HierarchyToggle')%3Bif%20(!expander)%20%7Balert(count%20%2B%20'%20tree%20items%20expanded%20successfully.')%3Breturn%3B%7Dexpander.click()%3Bcount%20%2B%3D%201%3BsetTimeout(expand%2C%20100)%3B%7Dexpand()%7D)()">Rally Tree Expander</a></dt>
+<dd>Recursively expand all tree branches in a table of user stories. (To do: Ideally this should use mutation observers to pull in new rows as they're added to the DOM, rather than using function recursion.)</dd>
+</dl>
+</main>
+<footer>
+<p><i>Last updated: 08/11/2021, 1:51 P.m.</i></p>
+</body>
+</html>
