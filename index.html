@@ -10,10 +10,21 @@
 <p>The following are bookmarklets that may add various functions or conveniences to the Rally interface. These are not optimized for performance, and may break at any time as Broadcom changes the Rally UI. Drag them to your bookmarks bar, or right-click and copy link address to clipboard. You can then paste the copied text into a new bookmark from your browsers bookmark manager.</p>
 <dl>
 <dt><a href="javascript:(function()%7Bvar%20count%20%3D%200%3Bvar%20target%20%3D%20document.querySelector('.smb-DataTable-wrapper')%3Bfunction%20expand()%20%7Bif%20(!target)%20%7Balert('No%20data%20tables%20containing%20Rally%20objects%20were%20found.%20Please%20ensure%20you%20are%20on%20a%20Rally%20page%20with%20a%20tree%20of%20user%20stories%20prior%20to%20running%20this%20bookmarklet.')%3Breturn%3B%7Dlet%20expander%20%3D%20target.querySelector('tr%3Anot(.is-expanded).smb-TableRow%20%3E%20*%20%3E%20*%20.smb-HierarchyToggle')%3Bif%20(!expander)%20%7Blet%20total%20%3D%20target.querySelectorAll('tr.smb-TableRow').length%3Balert(count%20%2B%20'%20tree%20items%20expanded%20successfully.%20'%20%2B%20total%20%2B%20'%20items%20in%20tree.')%3Breturn%3B%7Dexpander.click()%3Bcount%20%2B%3D%201%3BsetTimeout(expand%2C%20300)%3B%7Dexpand()%7D)()">Rally Tree Expander</a></dt>
-<dd>Recursively expand all tree branches in a table of user stories. (To do: Ideally this should use mutation observers to pull in new rows as they're added to the DOM, rather than using function recursion.)</dd>
+<dd>Recursively expand all tree branches in a table of user stories.</dd> 
+<dt><a href="javascript:(function()%7B(()%20%3D%3E%20%7Blet%20target%20%3D%20document.querySelector('.smb-DataTable-wrapper')%3Bif%20(!target)%20%7Balert('No%20Rally%20data%20table%20found.%20Please%20ensure%20you%20are%20on%20a%20Rally%20page%20containing%20Rally%20objects.')%3B%7D%20else%20%7Blet%20formatIDPrefix%20%3D%20'TA'%3Blet%20objectType%20%3D%20'tasks'%3Blet%20checkboxes%20%3D%20Array.from(target.getElementsByClassName('smb-Checkbox')).filter(c%20%3D%3E%20c.ariaLabel.slice(0%2C%202)%20%3D%3D%20formatIDPrefix%20%26%26%20c.ariaLabel%5B2%5D%20%3E%200%20%26%26%20c.ariaLabel%5B2%5D%20%3C%209)%3Bcheckboxes.forEach((checkbox)%20%3D%3E%20%7Bcheckbox.click()%3B%7D)%3Balert(checkboxes.length%20%2B%20'%20'%20%2B%20objectType%20%2B%20'%20checked%20or%20unchecked.')%3B%7D%7D)()%7D)()">Select Rally Tasks</a></dt>
+<dd>Toggle selection on all tasks in a table of Rally objects.</dd>
+<dt><a href="javascript:(function()%7B(()%20%3D%3E%20%7Blet%20target%20%3D%20document.querySelector('.smb-DataTable-wrapper')%3Bif%20(!target)%20%7Balert('No%20Rally%20data%20table%20found.%20Please%20ensure%20you%20are%20on%20a%20Rally%20page%20containing%20Rally%20objects.')%3B%7D%20else%20%7Blet%20formatIDPrefix%20%3D%20'US'%3Blet%20objectType%20%3D%20'user stories'%3Blet%20checkboxes%20%3D%20Array.from(target.getElementsByClassName('smb-Checkbox')).filter(c%20%3D%3E%20c.ariaLabel.slice(0%2C%202)%20%3D%3D%20formatIDPrefix%20%26%26%20c.ariaLabel%5B2%5D%20%3E%200%20%26%26%20c.ariaLabel%5B2%5D%20%3C%209)%3Bcheckboxes.forEach((checkbox)%20%3D%3E%20%7Bcheckbox.click()%3B%7D)%3Balert(checkboxes.length%20%2B%20'%20'%20%2B%20objectType%20%2B%20'%20checked%20or%20unchecked.')%3B%7D%7D)()%7D)()">Select Rally Stories</a></dt>
+<dd>Toggle selection on all user stories in a table of Rally objects.</dd>
+<dt><a href="javascript:(function()%7B(()%20%3D%3E%20%7Blet%20target%20%3D%20document.querySelector('.smb-DataTable-wrapper')%3Bif%20(!target)%20%7Balert('No%20Rally%20data%20table%20found.%20Please%20ensure%20you%20are%20on%20a%20Rally%20page%20containing%20Rally%20objects.')%3B%7D%20else%20%7Blet%20formatIDPrefix%20%3D%20'TC'%3Blet%20objectType%20%3D%20'test cases'%3Blet%20checkboxes%20%3D%20Array.from(target.getElementsByClassName('smb-Checkbox')).filter(c%20%3D%3E%20c.ariaLabel.slice(0%2C%202)%20%3D%3D%20formatIDPrefix%20%26%26%20c.ariaLabel%5B2%5D%20%3E%200%20%26%26%20c.ariaLabel%5B2%5D%20%3C%209)%3Bcheckboxes.forEach((checkbox)%20%3D%3E%20%7Bcheckbox.click()%3B%7D)%3Balert(checkboxes.length%20%2B%20'%20'%20%2B%20objectType%20%2B%20'%20checked%20or%20unchecked.')%3B%7D%7D)()%7D)()">Select Rally Test Cases</a></dt>
+<dd>Toggle selection on all test cases in a table of Rally objects.</dd>
 </dl>
+<h2>To Do</h2>
+<ul>
+<li>Rally Tree Expander: Use the mutation observer API to pull in new rows as they're added to the DOM, rather than using function recursion.</li>
+<li>Layout/Styling: Move bookmarklets into a table.</li>
+</ul>
 </main>
 <footer>
-<p><i>Last updated: 08/11/2021, 1:51 P.m.</i></p>
+<p><i>Last updated: 08/12/2021, 9:44 a.m.</i></p>
 </body>
 </html>
