@@ -10,9 +10,10 @@
 <p>The following are bookmarklets that may add various functions or conveniences to the Rally interface. These are not optimized for performance, and may break at any time as Broadcom changes the Rally UI. Drag them to your bookmarks bar, or right-click and copy link address to clipboard. You can then paste the copied text into a new bookmark from your browsers bookmark manager.</p>
 <aside>
 <p>Note: Some bookmarklets may replicate functionality that already exists in Rally. This may either be due to a lack of knowledge on my behalf at the time of creation, or Broadcom adding functionality to the UI at a later date. Such bookmarklets are kept here for posterity.</p>
+<p>For support or questions you can contact me: <a href="mailto:bussieret@cvshealth.com">BussiereT@CVSHealth.com</a></p>
 </aside>
 <dl>
-<dt><a href="javascript:(function()%7Bvar%20count%20%3D%200%3Bvar%20target%20%3D%20document.querySelector('.smb-DataTable-wrapper')%3Bfunction%20expand()%20%7Bif%20(!target)%20%7Balert('No%20data%20tables%20containing%20Rally%20objects%20were%20found.%20Please%20ensure%20you%20are%20on%20a%20Rally%20page%20with%20a%20tree%20of%20user%20stories%20prior%20to%20running%20this%20bookmarklet.')%3Breturn%3B%7Dlet%20expander%20%3D%20target.querySelector('tr%3Anot(.is-expanded).smb-TableRow%20%3E%20*%20%3E%20*%20.smb-HierarchyToggle')%3Bif%20(!expander)%20%7Blet%20total%20%3D%20target.querySelectorAll('tr.smb-TableRow').length%3Balert(count%20%2B%20'%20tree%20items%20expanded%20successfully.%20'%20%2B%20total%20%2B%20'%20items%20in%20tree.')%3Breturn%3B%7Dexpander.click()%3Bcount%20%2B%3D%201%3BsetTimeout(expand%2C%20300)%3B%7Dexpand()%7D)()">Rally Tree Expander</a></dt>
+<dt><a href="javascript:void%20function(){function%20a(){const%20a=g.querySelector(%22button[aria-label^=\%22Display%20children\%22]%22);a%3F(console.log(%22opening%20%3E%3E%3E%20%22,a.getAttribute(%22aria-label%22).slice(21)),++f,a.click()):(c.disconnect(),b())}function%20b(){var%20a=Math.floor;if(e=a((Date.now()-d)/1e3),60%3Ce){const%20b=a(e/60),c=e%2560;alert(`Expanded%20${f}%20stories%20in%20${b}%20minutes%20%26%20${c}%20seconds!`)}else%20alert(`Expanded%20${f}%20stories%20in%20${e}%20seconds!`)}const%20c=new%20MutationObserver(b=%3E{b.forEach(b=%3E{b.removedNodes.forEach(b=%3E{%22TR%22===b.tagName%26%26-1!==b.getAttribute(%22class%22).indexOf(%22chr-GenericMessageRow%22)%26%26(console.log(%22done%20loading%20child%20stories%22,b),a())})})}),d=Date.now();let%20e,f=0;const%20g=document.querySelector(%22tbody.smb-TableBody%22);g%3Fc.observe(g,{childList:!0,subtree:!0}):alert(%22No%20data%20tables%20containing%20Rally%20objects%20were%20found.%20Please%20ensure%20you%20are%20on%20a%20Rally%20page%20with%20a%20tree%20of%20user%20stories%20prior%20to%20running%20this%20bookmarklet.%22),a()}();">Rally Tree Expander</a></dt>
 <dd>Recursively expand all tree branches in a table of user stories.</dd> 
 <dt><a href="javascript:(function()%7B(()%20%3D%3E%20%7Blet%20target%20%3D%20document.querySelector('.smb-DataTable-wrapper')%3Bif%20(!target)%20%7Balert('No%20Rally%20data%20table%20found.%20Please%20ensure%20you%20are%20on%20a%20Rally%20page%20containing%20Rally%20objects.')%3B%7D%20else%20%7Blet%20formatIDPrefix%20%3D%20'TA'%3Blet%20objectType%20%3D%20'tasks'%3Blet%20checkboxes%20%3D%20Array.from(target.getElementsByClassName('smb-Checkbox')).filter(c%20%3D%3E%20c.ariaLabel.slice(0%2C%202)%20%3D%3D%20formatIDPrefix%20%26%26%20c.ariaLabel%5B2%5D%20%3E%200%20%26%26%20c.ariaLabel%5B2%5D%20%3C%209)%3Bcheckboxes.forEach((checkbox)%20%3D%3E%20%7Bcheckbox.click()%3B%7D)%3Balert(checkboxes.length%20%2B%20'%20'%20%2B%20objectType%20%2B%20'%20checked%20or%20unchecked.')%3B%7D%7D)()%7D)()">Select Rally Tasks</a></dt>
 <dd>Toggle selection on all tasks in a table of Rally objects.</dd>
@@ -21,19 +22,25 @@
 <dt><a href="javascript:(function()%7B(()%20%3D%3E%20%7Blet%20target%20%3D%20document.querySelector('.smb-DataTable-wrapper')%3Bif%20(!target)%20%7Balert('No%20Rally%20data%20table%20found.%20Please%20ensure%20you%20are%20on%20a%20Rally%20page%20containing%20Rally%20objects.')%3B%7D%20else%20%7Blet%20formatIDPrefix%20%3D%20'TC'%3Blet%20objectType%20%3D%20'test cases'%3Blet%20checkboxes%20%3D%20Array.from(target.getElementsByClassName('smb-Checkbox')).filter(c%20%3D%3E%20c.ariaLabel.slice(0%2C%202)%20%3D%3D%20formatIDPrefix%20%26%26%20c.ariaLabel%5B2%5D%20%3E%200%20%26%26%20c.ariaLabel%5B2%5D%20%3C%209)%3Bcheckboxes.forEach((checkbox)%20%3D%3E%20%7Bcheckbox.click()%3B%7D)%3Balert(checkboxes.length%20%2B%20'%20'%20%2B%20objectType%20%2B%20'%20checked%20or%20unchecked.')%3B%7D%7D)()%7D)()">Select Rally Test Cases</a></dt>
 <dd>Toggle selection on all test cases in a table of Rally objects.</dd>
 </dl>
-<h2>To Do</h2>
+<h2>Changelog</h2>
 <ul>
-<li>Rally Tree Expander: Use the mutation observer API to pull in new rows as they're added to the DOM, rather than using function recursion.</li>
-<li>Layout/Styling: Move bookmarklets into a table.</li>
-<li>Known Problems
+<li>08/10/2022:
 <ul>
-<li>Oddities may occur depending on how quickly Rally populates the DOM. On occasion, expanding stories may create duplicate rows. Improved error checking and observation of new table rows (see above) will resolve this.</li>
+<li>Rally Tree Expander: Show time it takes to expand an entire table of Rally artifacts</li>
+<li>Rally Tree Expander: Use the mutation observer API to more efficiently ingest rows as they populate the DOM</li>
+<li>Rally Tree Expander: Duplicate rows should no longer appear</li>
+<li>Rally Tree Expander: No longer using the timeout model should cause expansions to happen slightly quicker</li>
+</ul>
+</li>
+<li>08/12/2021:
+<ul>
+<li>Initial Release</li>
 </ul>
 </li>
 </ul>
 </main>
 <footer>
-<p><i>Last updated: 10/29/2021,, 12:09 p.m.</i></p>
+<p><i>Last updated: 08/10/2022, 12:27 p.m.</i></p>
 </footer>
 </body>
 </html>
